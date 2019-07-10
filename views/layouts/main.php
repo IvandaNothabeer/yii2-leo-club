@@ -42,9 +42,9 @@ FontAwesomeAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+                    ['label' => 'Members', 'url' => ['/member']],
+                    ['label' => 'Dogs', 'url' => ['/dog']],
+                    ['label' => 'Events', 'url' => ['/event']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/user/login']]
             ) : (

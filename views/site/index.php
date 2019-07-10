@@ -43,7 +43,7 @@ $this->title = 'LeoClub';
                 <p>Here you can enter your dogs into upcoming shows and manage your show entries
                 </p>
 
-                <p><a class="btn btn-default" href="<?=Url::base(true).'/show'?>">Shows &raquo;</a></p>
+                <p><a class="btn btn-default" href="<?=Url::base(true).'/event'?>">Shows &raquo;</a></p>
             </div>
         </div>
 

@@ -5,21 +5,18 @@ use yii\bootstrap\ActiveForm;
 use \dmstr\bootstrap\Tabs;
 use yii\helpers\StringHelper;
 
-use yii\helpers\ArrayHelper;
-use app\models\Membertype;
-
 /**
 * @var yii\web\View $this
-* @var app\models\Member $model
+* @var app\models\Event $model
 * @var yii\widgets\ActiveForm $form
 */
 
 ?>
 
-<div class="member-form">
+<div class="event-form">
 
     <?php $form = ActiveForm::begin([
-    'id' => 'Member',
+    'id' => 'Event',
     'layout' => 'horizontal',
     'enableClientValidation' => true,
     'errorSummaryCssClass' => 'error-summary alert alert-danger',
@@ -43,35 +40,20 @@ use app\models\Membertype;
         <p>
             
 
-<!-- attribute firstname -->
-			<?= $form->field($model, 'firstname')->textInput(['maxlength' => true]) ?>
+<!-- attribute name -->
+			<?= $form->field($model, 'name')->textarea(['rows' => 6]) ?>
 
-<!-- attribute lastname -->
-			<?= $form->field($model, 'lastname')->textInput(['maxlength' => true]) ?>
+<!-- attribute description -->
+			<?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-<!-- attribute address -->
-			<?= $form->field($model, 'address')->textarea(['rows' => 6]) ?>
+<!-- attribute start -->
+			<?= $form->field($model, 'start')->textInput() ?>
 
-<!-- attribute city -->
-			<?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
+<!-- attribute end -->
+			<?= $form->field($model, 'end')->textInput() ?>
 
-<!-- attribute membership -->
-			<?= $form->field($model, 'membership')->dropDownList(ArrayHelper::map(Membertype::find()->all(), 'id', 'type')) ?>
-
-<!-- attribute joined -->
-			<?= $form->field($model, 'joined')->widget(\yii\jui\DatePicker::class, ['dateFormat'=>'yyyy-MM-dd',]) ?>
-
-<!-- attribute active -->
-			<?= $form->field($model, 'active')->dropDownList(['No','Yes']) ?>
-
-<!-- attribute telephone -->
-			<?= $form->field($model, 'telephone')->textInput(['maxlength' => true]) ?>
-
-<!-- attribute mobile -->
-			<?= $form->field($model, 'mobile')->textInput(['maxlength' => true]) ?>
-
-<!-- attribute email -->
-			<?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+<!-- attribute details -->
+			<?= $form->field($model, 'details')->textInput() ?>
         </p>
         <?php $this->endBlock(); ?>
         
@@ -81,7 +63,7 @@ use app\models\Membertype;
                     'encodeLabels' => false,
                     'items' => [ 
                         [
-    'label'   => Yii::t('models', 'Member'),
+    'label'   => Yii::t('models', 'Event'),
     'content' => $this->blocks['main'],
     'active'  => true,
 ],

@@ -28,6 +28,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $updated_by
  *
  * @property \app\models\Dog[] $dogs
+ * @property \app\models\Transaction[] $transactions
  * @property string $aliasModel
  */
 abstract class Member extends \yii\db\ActiveRecord
@@ -105,6 +106,14 @@ abstract class Member extends \yii\db\ActiveRecord
     public function getDogs()
     {
         return $this->hasMany(\app\models\Dog::className(), ['member_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTransactions()
+    {
+        return $this->hasMany(\app\models\Transaction::className(), ['member_id' => 'id']);
     }
 
 

@@ -2,17 +2,15 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\helpers\ArrayHelper;
-use kartik\grid\GridView;
-use app\models\Membertype;
+use yii\grid\GridView;
 
 /**
 * @var yii\web\View $this
 * @var yii\data\ActiveDataProvider $dataProvider
-    * @var app\models\MemberSearch $searchModel
+    * @var app\models\MembertypeSearch $searchModel
 */
 
-$this->title = Yii::t('models', 'Members');
+$this->title = Yii::t('', 'Membertypes');
 $this->params['breadcrumbs'][] = $this->title;
 
 
@@ -21,15 +19,15 @@ $this->params['breadcrumbs'][] = $this->title;
 */
 $actionColumnTemplates = [];
 
-if (\Yii::$app->user->can('app_member_view', ['route' => true])) {
+if (\Yii::$app->user->can('app_membertype_view', ['route' => true])) {
     $actionColumnTemplates[] = '{view}';
 }
 
-if (\Yii::$app->user->can('app_member_update', ['route' => true])) {
+if (\Yii::$app->user->can('app_membertype_update', ['route' => true])) {
     $actionColumnTemplates[] = '{update}';
 }
 
-if (\Yii::$app->user->can('app_member_delete', ['route' => true])) {
+if (\Yii::$app->user->can('app_membertype_delete', ['route' => true])) {
     $actionColumnTemplates[] = '{delete}';
 }
 if (isset($actionColumnTemplates)) {
@@ -41,7 +39,7 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
 }
 $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTemplateString.'</div>';
 ?>
-<div class="giiant-crud member-index">
+<div class="giiant-crud membertype-index">
 
     <?php
 //             echo $this->render('_search', ['model' =>$searchModel]);
@@ -51,14 +49,14 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
     <?php \yii\widgets\Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
 
     <h1>
-        <?= Yii::t('models', 'Members') ?>
+        <?= Yii::t('', 'Membertypes') ?>
         <small>
             List
         </small>
     </h1>
     <div class="clearfix crud-navigation">
 <?php
-if(\Yii::$app->user->can('app_member_create', ['route' => true])){
+if(\Yii::$app->user->can('app_membertype_create', ['route' => true])){
 ?>
         <div class="pull-left">
             <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . 'New', ['create'], ['class' => 'btn btn-success']) ?>
@@ -68,7 +66,7 @@ if(\Yii::$app->user->can('app_member_create', ['route' => true])){
 ?>
         <div class="pull-right">
 
-                                                    
+                        
             <?= 
             \yii\bootstrap\ButtonDropdown::widget(
             [
@@ -81,11 +79,7 @@ if(\Yii::$app->user->can('app_member_create', ['route' => true])){
             ],
             'encodeLabels' => false,
             'items' => [
-            [
-                'url' => ['dog/index'],
-                'label' => '<i class="glyphicon glyphicon-arrow-right"></i> ' . Yii::t('models', 'Dog'),
-            ],
-                    
+
 ]
             ],
             'options' => [
@@ -132,17 +126,8 @@ if(\Yii::$app->user->can('app_member_create', ['route' => true])){
             },
             'contentOptions' => ['nowrap'=>'nowrap']
         ],
-			'firstname',
-			'lastname',
-			'address:ntext',
-			'city',
-            ['class'=>kartik\grid\EnumColumn::className(), 'attribute'=>'membership', 'enum'=> ArrayHelper::map(Membertype::find()->all(), 'id', 'type')],
-
-			'joined',
-			//'active',
-			/*'telephone',*/
-			/*'mobile',*/
-			'email:email',
+			'type',
+			'description',
                 ]
         ]); ?>
     </div>
